@@ -25,11 +25,8 @@
                 <h1>ngquicksort</h1>
                 <h4>customers=</h4>
                 <pre><code>{{ customers }}</code></pre>
-                <ul>
-                    <li ng-repeat="person in people">{{ person.name + ', ' + person.street }}</li>
-                </ul>
                 <span>Filter by name: </span><input type="text" data-ng-model="nameText.name" />
-                <table class="table table-striped" style="padding-top: 20px;">
+                <table class="table table-striped">
                     <thead>
                         <tr>
                             <th ng-click="sortBy='name';reverse=!reverse">Name <i class="fa fa-fw fa-sort"></i></th>
