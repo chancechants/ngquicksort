@@ -1,0 +1,56 @@
+<!doctype html>
+<html data-ng-app="">
+<head>
+    <title>ngquicksort</title>
+    <style>
+        [ng-cloak] {
+            display: none !important;
+        }
+        th {
+            cursor: pointer;
+        }
+    </style>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body ng-init="customers=[
+    {joined: '2016-01-01', name: 'Alpha', total: 104.88, city: 'Zed', state: 'AD'}, 
+    {joined: '2016-01-02', name: 'Beta', total: 83.8855555, city: 'Yellow', state: 'AC'},
+    {joined: '2016-01-03', name: 'Charlie', total: 62.44, city: 'Xerox', state: 'AB'},
+    {joined: '2016-01-04', name: 'Delta', total: 48.52, city: 'Washington', state: 'AA'}
+    ]">
+    <div ng-cloak>
+        <div class="container">
+            <div class="row" style="padding-top: 40px">
+                <h1>ngquicksort</h1>
+                <h4>customers mock stub: </h4>
+                <pre><code>{{ customers }}</code></pre>
+                <ul>
+                    <li ng-repeat="person in people">{{ person.name + ', ' + person.street }}</li>
+                </ul>
+                <span>Filter by name: </span><input type="text" data-ng-model="nameText.name" />
+                <table class="table table-striped" style="padding-top: 20px;">
+                    <thead>
+                        <tr>
+                            <th ng-click="sortBy='name';reverse=!reverse">Name <i class="fa fa-fw fa-sort"></i></th>
+                            <th ng-click="sortBy='total';reverse=!reverse">Total <i class="fa fa-fw fa-sort"></i></th>
+                            <th ng-click="sortBy='city';reverse=!reverse">City <i class="fa fa-fw fa-sort"></i></th>
+                            <th ng-click="sortBy='state';reverse=!reverse">State <i class="fa fa-fw fa-sort"></i></th>
+                            <th ng-click="sortBy='joined';reverse=!reverse">Joined <i class="fa fa-fw fa-sort"></i></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-ng-repeat="cust in customers | filter:nameText | orderBy: sortBy: reverse">
+                            <td>{{ cust.name }}</td>
+                            <td>{{ cust.total | currency }}</td>
+                            <td>{{ cust.city }}</td>
+                            <td>{{ cust.state }}</td>
+                            <td>{{ cust.joined | date:'longDate' }}</td>                            
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js"></script>
+</body>
